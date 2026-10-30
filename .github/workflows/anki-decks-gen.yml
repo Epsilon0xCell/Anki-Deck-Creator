@@ -11,10 +11,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.x'  # Specify the Python version you need
 
@@ -38,28 +38,13 @@ jobs:
       run: echo "TAG_NAME=v1.0.0-$(date +%s)-$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 8)" >> $GITHUB_ENV
 
     - name: Upload Anki deck as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: anki-deck
         path: '*.apkg'
 
-    - name: Create GitHub Release
-      id: create_release
-      uses: actions/create-release@v1
+    - name: Create GitHub Release and upload the deck
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ env.TAG_NAME }}
-        release_name: Anki Deck Release
-        draft: false
-        prerelease: false
-
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ env.APKG_FILE }}
-        asset_name: anki-deck.apkg  # This name can be anything you prefer
-        asset_content_type: application/octet-stream
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh release create "$TAG_NAME" --title "Anki Deck Release" --notes "" "$APKG_FILE"

@@ -15,24 +15,24 @@ def read_flashcards(file_path):
     flashcards = []
     i = 0
     while i < len(lines):
+        # Each entry is a question, its answer, then that card's category
+        # lines, matching the layout used in flashcards.txt.
+        if not lines[i].endswith('?'):
+            print(f"Warning: Incomplete flashcard entry starting at line {i+1}")
+            break
+        question = lines[i]
+        i += 1
+        if i >= len(lines):
+            print(f"Warning: Missing answer for question starting at line {i}")
+            break
+        answer = lines[i]
+        i += 1
         categories = []
-        # Collect categories
+        # Collect the categories that follow this card's answer
         while i < len(lines) and not lines[i].endswith('?'):
             categories.append(lines[i])
             i += 1
-        # Ensure there are enough lines for a question and answer
-        if i < len(lines) and lines[i].endswith('?'):
-            question = lines[i]
-            i += 1
-            if i < len(lines):
-                answer = lines[i]
-                flashcards.append((question, answer, categories))
-                i += 1
-            else:
-                print(f"Warning: Missing answer for question starting at line {i+1}")
-        else:
-            print(f"Warning: Incomplete flashcard entry starting at line {i+1}")
-            break
+        flashcards.append((question, answer, categories))
     return flashcards
 
 # Define the model for the flashcards

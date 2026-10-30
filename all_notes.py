@@ -32,7 +32,11 @@ def get_note_info(note_ids):
     return response.json().get('result', [])
 
 def main():
-    decks = get_all_decks()
+    try:
+        decks = get_all_decks()
+    except requests.exceptions.RequestException:
+        print("Could not reach AnkiConnect at http://localhost:8765. Is Anki running with the AnkiConnect add-on installed?")
+        return
     all_notes = []
 
     for deck in decks:

@@ -12,5 +12,9 @@ def get_model_id(model_name):
     return models.get(model_name)
 
 model_name = "Basic"  # Replace with the name of your model
-model_id = get_model_id(model_name)
-print(f"Model ID for '{model_name}': {model_id}")
+try:
+    model_id = get_model_id(model_name)
+except requests.exceptions.RequestException:
+    print("Could not reach AnkiConnect at http://localhost:8765. Is Anki running with the AnkiConnect add-on installed?")
+else:
+    print(f"Model ID for '{model_name}': {model_id}")

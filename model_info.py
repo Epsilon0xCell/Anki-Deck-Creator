@@ -41,7 +41,11 @@ def get_model_info(model_name):
         return None
 
 model_name = "Basic"  # Replace with the name of your model
-model_info = get_model_info(model_name)
+try:
+    model_info = get_model_info(model_name)
+except requests.exceptions.RequestException:
+    print("Could not reach AnkiConnect at http://localhost:8765. Is Anki running with the AnkiConnect add-on installed?")
+    raise SystemExit(1)
 
 if model_info:
     print(f"Model ID for '{model_name}': {model_info['model_id']}")
