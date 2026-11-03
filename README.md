@@ -1,20 +1,20 @@
-![Introduction: an empty plank stage inside one painted bay, before the company arrives](intro-banner.png)
+![Anki-Deck-Creator introduction, wordless](intro-banner.png)
 
 # Anki-Deck-Creator
 
-**Shakespeare in the Parking Lot**
-_Questions will be spoken here, answers will answer them, night after night._
+**The Watercolor Bindery**
+_Loose sheets go in as plain text and come out bound, painted in ink blue and ochre._
 
-![banner](banner.png)
+![Anki-Deck-Creator banner](banner.png)
 
-![The lot, animated: bulbs chase, clubs cascade, the headlight wedge breathes](assets-scene.svg)
+![Anki-Deck-Creator animated scene](assets-scene.svg)
 
 Creates Anki decks (.apkg files) from a plain text file of flashcards, plus three small helper scripts that query a running Anki instance through the AnkiConnect add-on.
 
 ## Files
-_The cast, introduced one by one_
+_The sheets, introduced one by one_
 
-![Heavy separator: a club arc crossing a ruled line](sep-heavy.svg)
+![Major separator](sep-heavy.svg)
 
 - `anki-gen.py` - builds an .apkg deck from `flashcards.txt` using genanki. The deck name and the output file name are random strings, so each run produces a new file such as `jTHjjbWTMJ.apkg`.
 - `flashcards.txt` - the sample input: 55 cards about the branches of the United States government.
@@ -23,12 +23,12 @@ _The cast, introduced one by one_
 - `model_info.py` - prints the ID, field names, and templates of the model named `Basic`, using AnkiConnect.
 - `.github/workflows/anki-decks-gen.yml` - on every push to `main`, installs genanki, runs `anki-gen.py`, uploads the .apkg as a workflow artifact, and creates a GitHub release with the .apkg attached.
 
-> Taped playbill: deck names are random by design. One real example from the run of the house: `jTHjjbWTMJ.apkg`.
+> Pinned studio note: deck names are random by design. One real example from the run of the house: `jTHjjbWTMJ.apkg`.
 
 ## Input format
-_Stage directions for the text file_
+_Instructions written on the first sheet_
 
-![Light separator](sep-light.svg)
+![Minor separator](sep-light.svg)
 
 `read_flashcards` in `anki-gen.py` strips blank lines, then reads each card as:
 
@@ -39,9 +39,9 @@ _Stage directions for the text file_
 The generated model has three fields: Question, Answer, and Categories (the category lines joined with commas).
 
 ## Requirements
-_What the company needs before curtain_
+_What the desk needs before the first wash_
 
-![Light separator](sep-light.svg)
+![Minor separator](sep-light.svg)
 
 - Python 3
 - For `anki-gen.py`: `genanki`
@@ -53,12 +53,12 @@ Install both Python packages with:
 pip install -r requirements.txt
 ```
 
-> Taped playbill: the helpers speak to AnkiConnect at `http://localhost:8765`. If Anki is not running, that door stays shut.
+> Pinned studio note: the helpers speak to AnkiConnect at `http://localhost:8765`. If Anki is not running, that door stays shut.
 
 ## Usage
-_The evening itself, in acts_
+_The making, sheet by sheet_
 
-![Heavy separator: a club arc crossing a ruled line](sep-heavy.svg)
+![Major separator](sep-heavy.svg)
 
 Generate a deck:
 
