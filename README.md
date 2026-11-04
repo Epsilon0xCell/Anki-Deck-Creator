@@ -1,4 +1,6 @@
-![Anki-Deck-Creator introduction, wordless](intro-banner.png)
+<p align="center"><img src="intro-banner.png" alt="Anki-Deck-Creator introduction, wordless" width="800"></p>
+
+<p align="center"><img src="logo.png" alt="Anki-Deck-Creator logo" width="180"></p>
 
 # Anki-Deck-Creator
 
@@ -11,17 +13,26 @@ _Loose sheets go in as plain text and come out bound, painted in ink blue and oc
 
 Creates Anki decks (.apkg files) from a plain text file of flashcards, plus three small helper scripts that query a running Anki instance through the AnkiConnect add-on.
 
+## Contents
+
+- [Files](#files)
+- [Input format](#input-format)
+- [Requirements](#requirements)
+- [Usage](#usage)
+
 ## Files
 _The sheets, introduced one by one_
 
 ![Major separator](sep-heavy.svg)
 
-- `anki-gen.py` - builds an .apkg deck from `flashcards.txt` using genanki. The deck name and the output file name are random strings, so each run produces a new file such as `jTHjjbWTMJ.apkg`.
-- `flashcards.txt` - the sample input: 55 cards about the branches of the United States government.
-- `all_notes.py` - prints every note in every deck as JSON, using AnkiConnect.
-- `model_id.py` - prints the numeric ID of the model named `Basic`, using AnkiConnect.
-- `model_info.py` - prints the ID, field names, and templates of the model named `Basic`, using AnkiConnect.
-- `.github/workflows/anki-decks-gen.yml` - on every push to `main`, installs genanki, runs `anki-gen.py`, uploads the .apkg as a workflow artifact, and creates a GitHub release with the .apkg attached.
+| File | What it does |
+| --- | --- |
+| `anki-gen.py` | builds an .apkg deck from `flashcards.txt` using genanki. The deck name and the output file name are random strings, so each run produces a new file such as `jTHjjbWTMJ.apkg`. |
+| `flashcards.txt` | the sample input: 55 cards about the branches of the United States government. |
+| `all_notes.py` | prints every note in every deck as JSON, using AnkiConnect. |
+| `model_id.py` | prints the numeric ID of the model named `Basic`, using AnkiConnect. |
+| `model_info.py` | prints the ID, field names, and templates of the model named `Basic`, using AnkiConnect. |
+| `.github/workflows/anki-decks-gen.yml` | on every push to `main`, installs genanki, runs `anki-gen.py`, uploads the .apkg as a workflow artifact, and creates a GitHub release with the .apkg attached. |
 
 > Pinned studio note: deck names are random by design. One real example from the run of the house: `jTHjjbWTMJ.apkg`.
 
