@@ -1,24 +1,26 @@
-<p align="center"><img src="intro-banner.png" alt="Anki-Deck-Creator introduction, wordless" width="800"></p>
-
-<p align="center"><img src="logo.png" alt="Anki-Deck-Creator logo" width="180"></p>
-
 # Anki-Deck-Creator
+
+Creates Anki decks (.apkg files) from a plain text file of flashcards, plus three small helper scripts that query a running Anki instance through the AnkiConnect add-on.
+
+![Python](https://img.shields.io/badge/python-3-blue.svg)
+
+![Anki-Deck-Creator banner](banner.png)
 
 **The Watercolor Bindery**
 _Loose sheets go in as plain text and come out bound, painted in ink blue and ochre._
 
-![Anki-Deck-Creator banner](banner.png)
+[Quick Start](#quick-start) · [Files](#files) · [Input format](#input-format) · [Requirements](#requirements) · [Usage](#usage)
 
-![Anki-Deck-Creator animated scene](assets-scene.svg)
+## Quick Start
 
-Creates Anki decks (.apkg files) from a plain text file of flashcards, plus three small helper scripts that query a running Anki instance through the AnkiConnect add-on.
+Install the Python packages, then generate a deck from `flashcards.txt`:
 
-## Contents
+```
+pip install -r requirements.txt
+python anki-gen.py
+```
 
-- [Files](#files)
-- [Input format](#input-format)
-- [Requirements](#requirements)
-- [Usage](#usage)
+The script prints the random deck name and the .apkg file name it created. Import that .apkg file into Anki to use the deck. The helper scripts (`all_notes.py`, `model_id.py`, `model_info.py`) need Anki running with the AnkiConnect add-on listening at `http://localhost:8765`; see Requirements and Usage below.
 
 ## Files
 _The sheets, introduced one by one_
@@ -51,8 +53,6 @@ The generated model has three fields: Question, Answer, and Categories (the cate
 
 ## Requirements
 _What the desk needs before the first wash_
-
-![Minor separator](sep-light.svg)
 
 - Python 3
 - For `anki-gen.py`: `genanki`
@@ -88,3 +88,11 @@ python model_info.py
 ```
 
 If AnkiConnect cannot be reached, the helper scripts now print a short message saying so instead of a traceback. To query a model other than `Basic`, edit the `model_name` value in `model_id.py` or `model_info.py`.
+
+## Visual Identity
+
+<p align="center"><img src="intro-banner.png" alt="Anki-Deck-Creator introduction, wordless" width="800"></p>
+
+<p align="center"><img src="logo.png" alt="Anki-Deck-Creator logo" width="180"></p>
+
+![Anki-Deck-Creator animated scene](assets-scene.svg)
